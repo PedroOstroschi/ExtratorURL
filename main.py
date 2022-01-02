@@ -1,10 +1,11 @@
 url = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
 
 
+
 #separa as bases e os parametros
 indice_interrogacao = url.find('?')
 url_base = url[:indice_interrogacao]
-parametro_busca = 'quantidade'
+parametro_busca = 'moedaOrigem'
 tamanho_parametro = len(parametro_busca)
 url_parametros = url[indice_interrogacao + 1:]
 print(url_parametros)
