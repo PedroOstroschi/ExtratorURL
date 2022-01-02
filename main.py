@@ -1,22 +1,13 @@
-url = "http://bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&quantidade=100"
+from ExtratorURL import ExtratorURL
 
+url = "bytebank.com/cambio?quantidade=100&moedaOrigem=dolar&moedaDestino=real"
+extrator_url = ExtratorURL(url)
 
+VALOR_DESTINO = 1/5.50  # 1 moeda de origem = 5.50 moeda de destino
+moeda_origem = extrator_url.get_valor_parametro("moedaOrigem")
+moeda_destino = extrator_url.get_valor_parametro("moedaDestino")
+quantidade = extrator_url.get_valor_parametro("quantidade")
 
-#separa as bases e os parametros
-indice_interrogacao = url.find('?')
-url_base = url[:indice_interrogacao]
-parametro_busca = 'moedaOrigem'
-tamanho_parametro = len(parametro_busca)
-url_parametros = url[indice_interrogacao + 1:]
-print(url_parametros)
+quantide_final = int(quantidade) * VALOR_DESTINO
 
-#Busca o valor de um parametro
-indice_parametro = url_parametros.find(parametro_busca)
-indice_valor = indice_parametro + tamanho_parametro + 1
-indice_e_comercial = url_parametros.find('&', indice_valor)
-if indice_e_comercial == -1:
-    valor = url_parametros[indice_valor:]
-else:
-    valor = url_parametros[indice_valor:indice_e_comercial]
-
-print(valor)
+print("{} {}".format(quantide_final, moeda_destino))
